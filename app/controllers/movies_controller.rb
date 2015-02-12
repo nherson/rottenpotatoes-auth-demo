@@ -9,8 +9,12 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     session[:sort] = params[:sort] || session[:sort]
-    session[:ratings] = params[:ratings].keys if params[:ratings]
-    session[:ratings] = session[:ratings] || @all_ratings
+    ratings = params[:ratings].keys if params[:ratings].is_a?(Hash)
+    session[:ratings] = ratings || session[:ratings] || @all_ratings
+    if session[:sort] != params[:sort] or session[:ratings] != params[:ratings]
+      flash.keep
+      redirect_to movies_path(:sort => session[:sort], :ratings => session[:ratings])
+    end
     @ratings = session[:ratings]
     @sort = {:order => session[:sort].to_sym} if session[:sort]
     @movies = Movie.find_all_by_rating(session[:ratings], @sort)
