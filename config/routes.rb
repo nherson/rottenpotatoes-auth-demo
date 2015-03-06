@@ -16,7 +16,7 @@ Rottenpotatoes::Application.routes.draw do
   #   resources :products
   
   # Route for the root path '/'
-  root :to => 'movies#root', :as => :root
+  get '/', :to => 'movies#root', :as => :root
   resources :movies
   match 'movies/director/:id' => 'movies#director', :as => :movies_director
 
