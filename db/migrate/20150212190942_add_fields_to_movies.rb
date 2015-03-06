@@ -1,9 +1,9 @@
 class AddFieldsToMovies < ActiveRecord::Migration
   def change
-#create_table :movies
-#add_column :movies, :title, :string
-#add_column :movies, :rating, :string
-#add_column :movies, :description, :text
-#add_column :movies, :release_date, :datetime
+    create_table :movies
+    add_column :movies, :title, :string
+    add_column :movies, :rating, :string
+    add_column :movies, :description, :text
+    add_column :movies, :release_date, :datetime
   end
 end
